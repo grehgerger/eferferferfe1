@@ -9,14 +9,27 @@ local UserInputService = game:GetService("UserInputService")
 local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local CurrentCamera = Workspace.CurrentCamera
+local RunService = game:GetService("RunService")
 
-local lemonsettings = {
+RunService.Heartbeat:Connect(function()
+    pcall(function()
+        for i,v in pairs(game.Players:GetChildren()) do
+            if v.Name ~= game.Players.LocalPlayer.Name then
+                local hrp = v.Character.HumanoidRootPart
+                hrp.Velocity = Vector3.new(hrp.Velocity.X, 0, hrp.Velocity.Z)    
+                hrp.AssemblyLinearVelocity = Vector3.new(hrp.Velocity.X, 0, hrp.Velocity.Z)   
+            end
+        end
+    end)
+end)
+
+local LemonSettings = {
     SilentAim = true,
     AimLock = false,
-    Prediction = 0.1832,
+    Prediction = 0.14,
     AimLockKeybind = Enum.KeyCode.E
 }
-getgenv().lemonsettings = lemonsettings
+getgenv().LemonSettings = LemonSettings
 
 function Aiming.Check()
     -------------
@@ -50,9 +63,9 @@ __index =
             local SelectedPart = Aiming.SelectedPart
 
             -- // Hit/Target
-            if (lemonsettings.SilentAim and (k == "Hit" or k == "Target")) then
+            if (LemonSettings.SilentAim and (k == "Hit" or k == "Target")) then
                 -- // Hit to account prediction
-                local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * lemonsettings.Prediction)
+                local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * LemonSettings.Prediction)
 
                 -- // Return modded val
                 return (k == "Hit" and Hit or SelectedPart)
@@ -69,10 +82,10 @@ local mouse = player:GetMouse()
 mouse.KeyDown:Connect(
     function(key)
         if key == "k" then
-            if lemonsettings.SilentAim == false then
-                lemonsettings.SilentAim = true
+            if LemonSettings.SilentAim == false then
+                LemonSettings.SilentAim = true
             else
-                lemonsettings.SilentAim = false
+                LemonSettings.SilentAim = false
             end
         end
     end
@@ -82,12 +95,12 @@ RunService:BindToRenderStep(
     "AimLock",
     0,
     function()
-        if (lemonsettings.AimLock and Aiming.Check() and UserInputService:IsKeyDown(lemonsettings.AimLockKeybind)) then
+        if (LemonSettings.AimLock and Aiming.Check() and UserInputService:IsKeyDown(LemonSettings.AimLockKeybind)) then
             -- // Vars
             local SelectedPart = Aiming.SelectedPart
 
             -- // Hit to account prediction
-            local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * lemonsettings.Prediction)
+            local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * LemonSettings.Prediction)
 
             CurrentCamera.CFrame = CFrame.lookAt(CurrentCamera.CFrame.Position, Hit.Position)
         end
