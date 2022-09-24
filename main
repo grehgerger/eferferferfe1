@@ -1,4 +1,4 @@
-local Aiming = loadstring(game:HttpGet("https://pastebin.com/raw/ziB8YGHT", true))()
+local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/grehgerger/erferfefefer2/main/yes", true))()
 Aiming.TeamCheck(false)
 
 local Workspace = game:GetService("Workspace")
@@ -10,13 +10,13 @@ local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local CurrentCamera = Workspace.CurrentCamera
 
-local DaHoodSettings = {
+local lemonsettings = {
     SilentAim = true,
     AimLock = false,
-    Prediction = 0.14,
+    Prediction = 0.1832,
     AimLockKeybind = Enum.KeyCode.E
 }
-getgenv().DaHoodSettings = DaHoodSettings
+getgenv().lemonsettings = lemonsettings
 
 function Aiming.Check()
     -------------
@@ -50,9 +50,9 @@ __index =
             local SelectedPart = Aiming.SelectedPart
 
             -- // Hit/Target
-            if (DaHoodSettings.SilentAim and (k == "Hit" or k == "Target")) then
+            if (lemonsettings.SilentAim and (k == "Hit" or k == "Target")) then
                 -- // Hit to account prediction
-                local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
+                local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * lemonsettings.Prediction)
 
                 -- // Return modded val
                 return (k == "Hit" and Hit or SelectedPart)
@@ -69,10 +69,10 @@ local mouse = player:GetMouse()
 mouse.KeyDown:Connect(
     function(key)
         if key == "k" then
-            if DaHoodSettings.SilentAim == false then
-                DaHoodSettings.SilentAim = true
+            if lemonsettings.SilentAim == false then
+                lemonsettings.SilentAim = true
             else
-                DaHoodSettings.SilentAim = false
+                lemonsettings.SilentAim = false
             end
         end
     end
@@ -82,12 +82,12 @@ RunService:BindToRenderStep(
     "AimLock",
     0,
     function()
-        if (DaHoodSettings.AimLock and Aiming.Check() and UserInputService:IsKeyDown(DaHoodSettings.AimLockKeybind)) then
+        if (lemonsettings.AimLock and Aiming.Check() and UserInputService:IsKeyDown(lemonsettings.AimLockKeybind)) then
             -- // Vars
             local SelectedPart = Aiming.SelectedPart
 
             -- // Hit to account prediction
-            local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
+            local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * lemonsettings.Prediction)
 
             CurrentCamera.CFrame = CFrame.lookAt(CurrentCamera.CFrame.Position, Hit.Position)
         end
