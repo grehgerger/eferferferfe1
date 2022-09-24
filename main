@@ -1,7 +1,9 @@
+getgenv().resolver = true
 local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/grehgerger/erferfefefer2/main/xddd", true))()
 Aiming.TeamCheck(false)
 
 local Workspace = game:GetService("Workspace")
+_G.resolver = loadstring(game:HttpGet("https://https://raw.githubusercontent.com/grehgerger/eereerreerfresolv/main/res", true))()
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
