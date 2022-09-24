@@ -26,7 +26,7 @@ end)
 local LemonSettings = {
     SilentAim = true,
     AimLock = false,
-    Prediction = 0.14,
+    Prediction = 0.10945,
     AimLockKeybind = Enum.KeyCode.E
 }
 getgenv().LemonSettings = LemonSettings
