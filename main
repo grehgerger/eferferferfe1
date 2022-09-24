@@ -1,9 +1,8 @@
-getgenv().resolver = true
 local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/grehgerger/erferfefefer2/main/xddd", true))()
 Aiming.TeamCheck(false)
 
+
 local Workspace = game:GetService("Workspace")
-_G.resolver = loadstring(game:HttpGet("https://https://raw.githubusercontent.com/grehgerger/eereerreerfresolv/main/res", true))()
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -11,6 +10,18 @@ local UserInputService = game:GetService("UserInputService")
 local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local CurrentCamera = Workspace.CurrentCamera
+local RunService = game:GetService("RunService")
+RunService.Heartbeat:Connect(function()
+    pcall(function()
+        for i,v in pairs(game.Players:GetChildren()) do
+            if v.Name ~= game.Players.LocalPlayer.Name then
+                local hrp = v.Character.HumanoidRootPart
+                hrp.Velocity = Vector3.new(hrp.Velocity.X, 0, hrp.Velocity.Z)    
+                hrp.AssemblyLinearVelocity = Vector3.new(hrp.Velocity.X, 0, hrp.Velocity.Z)   
+            end
+        end
+    end)
+end)
 
 local lemonware = {
     SilentAim = true,
