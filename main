@@ -106,4 +106,3 @@ RunService:BindToRenderStep(
         end
     end
 )
-rconsoleclear()
